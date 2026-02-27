@@ -1,8 +1,388 @@
-<html>
-    <head>
-        <title>Tela Inicial</title>
-    </head>
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senac DS Dourados - Curso Desenvolvimento de Sistemas</title>
+
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/assistente.css">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
 <body>
-        <h1>Hello World</h1>
+
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="images/senac-logo.png" alt="Senac Dourados" onerror="this.style.display='none'">
+                <span>Senac DS | Dourados</span>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="sobre.html">Sobre o Curso</a></li>
+                <li><a href="eventos.html">Eventos</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+
+    <section class="carrossel-section">
+        <div class="carrossel-container">
+            <div class="carrossel" id="carrossel">
+                <div class="slide active">
+                    <img src="images/carrossel/slide1.png" alt="Curso DS" onerror="this.src='https://via.placeholder.com/1200x500/4CAF50/ffffff?text=Curso+DS'">
+                    <div class="slide-content">
+                        <h2>Técnico em Desenvolvimento de Sistemas</h2>
+                        <p>Senac Dourados - A melhor formação em tecnologia da região</p>
+                        <a href="sobre.html" class="btn-carrossel">Saiba mais</a>
+                    </div>
+                </div>
+
+
+                <div class="slide">
+                    <img src="images/carrossel/slide2.jpeg" alt="Maratona Desenvolvedor" onerror="this.src='https://via.placeholder.com/1200x500/2196F3/ffffff?text=Maratona+Desenvolvedor'">
+                    <div class="slide-content">
+                        <h2>🚀 Maratona Desenvolvedor 2026</h2>
+                        <p>25 de Maio - 8h às 18h | Inscrições abertas</p>
+                        <a href="eventos.html" class="btn-carrossel">Participar</a>
+                    </div>
+                </div>
+
+
+                <div class="slide">
+                    <img src="images/carrossel/slide3.jpeg" alt="Hackathon DS" onerror="this.src='https://via.placeholder.com/1200x500/FF9800/ffffff?text=Hackathon+DS'">
+                    <div class="slide-content">
+                        <h2>💻 Hackathon DS 2026</h2>
+                        <p>3 dias de imersão em desenvolvimento - 10 a 12 de Junho</p>
+                        <a href="eventos.html" class="btn-carrossel">Saiba mais</a>
+                    </div>
+                </div>
+
+
+                <div class="slide">
+                    <img src="images/carrossel/slide4.jpeg" alt="Projeto SAMU" onerror="this.src='https://via.placeholder.com/1200x500/9C27B0/ffffff?text=Projeto+SAMU'">
+                    <div class="slide-content">
+                        <h2>🏥 Projeto Integrador SAMU</h2>
+                        <p>Em desenvolvimento - Sistema de Gestão para o SAMU Dourados</p>
+                        <a href="#projeto-samu" class="btn-carrossel">Acompanhe</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <button class="carrossel-btn prev" id="prevSlide">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carrossel-btn next" id="nextSlide">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+
+            <div class="carrossel-indicators" id="carrosselIndicators">
+                <span class="indicator active"></span>
+                <span class="indicator"></span>
+                <span class="indicator"></span>
+                <span class="indicator"></span>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="info-cards">
+        <div class="container">
+            <h2 class="section-title">Por que escolher o Senac Dourados?</h2>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Laboratórios Modernos</h3>
+                    <p>Estrutura com computadores de última geração e softwares atualizados</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Professores do Mercado</h3>
+                    <p>Profissionais atuantes em empresas de tecnologia da região</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Parcerias com Empresas</h3>
+                    <p>Estágio garantido em empresas parceiras de Dourados e região</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Projetos Reais</h3>
+                    <p>Desenvolvimento de soluções para clientes reais como o SAMU</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="diferenciais">
+        <div class="container">
+            <h2 class="section-title">🎯 Nossos Diferenciais</h2>
+
+            <div class="diferenciais-grid">
+                <div class="diferencial-item">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3>Corpo Docente Qualificado</h3>
+                    <p>Professores com mestrado e experiência no mercado de trabalho</p>
+                </div>
+                <div class="diferencial-item">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Laboratórios Modernos</h3>
+                    <p>Estrutura completa com computadores de última geração</p>
+                </div>
+                <div class="diferencial-item">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Estágio Garantido</h3>
+                    <p>Parcerias com mais de 30 empresas da região</p>
+                </div>
+                <div class="diferencial-item">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Projetos Reais</h3>
+                    <p>Como o sistema desenvolvido para o SAMU Dourados</p>
+                </div>
+                <div class="diferencial-item">
+                    <i class="fas fa-users"></i>
+                    <h3>Networking</h3>
+                    <p>Conexão com profissionais e empresas do setor</p>
+                </div>
+                <div class="diferencial-item">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Certificação Reconhecida</h3>
+                    <p>Diploma válido em todo território nacional</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="projeto-destaque" id="projeto-samu">
+        <div class="container">
+            <h2 class="section-title">🚧 Projeto Integrador em Desenvolvimento</h2>
+
+            <div class="projeto-card">
+                <div class="projeto-header">
+                    <div class="projeto-titulo">
+                        <span class="projeto-badge">PI 2026 - 3º Semestre</span>
+                        <h3>Sistema de Gerenciamento de Estoque e Insumos</h3>
+                        <p class="projeto-cliente">SAMU Regional de Dourados</p>
+                    </div>
+                </div>
+
+                <div class="projeto-content">
+                    <div class="projeto-info">
+                        <div class="projeto-parceiro">
+                            <i class="fas fa-ambulance"></i>
+                            <strong>Parceiro:</strong> SAMU 192 - Dourados/MS
+                        </div>
+
+                        <!-- BARRA DE PROGRESSO -->
+                        <div class="projeto-progresso">
+                            <div class="progresso-header">
+                                <span class="progresso-label">Status do Desenvolvimento</span>
+                                <span class="progresso-percentual">35%</span>
+                            </div>
+                            <div class="progresso-bar">
+                                <div class="progresso-fill" style="width: 35%;"></div>
+                            </div>
+                            <p class="progresso-desc">Projeto em fase inicial de desenvolvimento</p>
+                        </div>
+
+                        <p class="projeto-descricao">
+                            Desenvolvido pelos alunos do 3º semestre do curso Técnico em Desenvolvimento de Sistemas, este sistema está sendo criado para revolucionar o controle de medicamentos e insumos do SAMU Dourados.
+                        </p>
+
+                        <div class="projeto-detalhes">
+                            <h4>✅ Funcionalidades planejadas:</h4>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> Controle em tempo real de medicamentos e insumos</li>
+                                <li><i class="fas fa-check-circle"></i> Gestão de validade e lotes com alertas automáticos</li>
+                                <li><i class="fas fa-check-circle"></i> Relatórios gerenciais para a coordenação do SAMU</li>
+                                <li><i class="fas fa-check-circle"></i> App mobile para conferência em campo pelas equipes</li>
+                                <li><i class="fas fa-check-circle"></i> Integração com sistema de compras e fornecedores</li>
+                                <li><i class="fas fa-check-circle"></i> Dashboard com indicadores de consumo</li>
+                            </ul>
+                        </div>
+
+                        <div class="projeto-tecnologias">
+                            <h4>Tecnologias utilizadas:</h4>
+                            <div class="tech-tags">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">React Native</span>
+                                <span class="tech-tag">Python</span>
+                            </div>
+                        </div>
+
+                        <div class="projeto-equipe">
+                            <h4>👥 Equipe Desenvolvedora:</h4>
+                            <div class="equipe-nomes">
+                                <p>Guilherme Duarte, Guilherme Santos, Andrey, Arthur Chavoni, Eduardo Garcia, Renato, Jaqueline, Bruno Fonseca, </p>
+                                <p class="orientador"><i class="fas fa-user-graduate"></i> Orientador: Prof. Thiago Gimenez</p>
+                            </div>
+                        </div>
+
+                        <div class="projeto-previsao">
+                            <i class="fas fa-calendar-alt"></i>
+                            <strong>Previsão de conclusão:</strong> Agosto/2026
+                        </div>
+                    </div>
+
+                    <div class="projeto-imagem">
+                        <img src="images/projetos/samu-sistema.jpg" alt="Sistema SAMU" onerror="this.src='https://via.placeholder.com/400x300/4CAF50/ffffff?text=Projeto+SAMU+35%'">
+                        <p class="img-legenda">Interface em desenvolvimento - 35% concluído</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="depoimentos">
+        <div class="container">
+            <h2 class="section-title">O que dizem nossos alunos</h2>
+
+            <div class="depoimentos-grid">
+                <div class="depoimento-card">
+                    <div class="depoimento-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <p class="depoimento-texto">"Participar do projeto do SAMU está sendo uma experiência incrível! Ver nosso sistema começando a tomar forma e sabendo que vai ajudar a salvar vidas não tem preço."</p>
+                    <p class="depoimento-aluno">- Arthur Chavoni, Turma 254</p>
+                </div>
+
+                <div class="depoimento-card">
+                    <div class="depoimento-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <p class="depoimento-texto">"As aulas práticas e os professores que atuam no mercado fazem toda diferença. Já estou aplicando o que aprendo no meu estágio."</p>
+                    <p class="depoimento-aluno">- Bruno Fonseca, Turma 254</p>
+                </div>
+
+                <div class="depoimento-card">
+                    <div class="depoimento-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <p class="depoimento-texto">"A estrutura do Senac é sensacional! Laboratórios novos, internet rápida e todo material que precisamos."</p>
+                    <p class="depoimento-aluno">- Eduardo Garcia, Turma 254</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="assistant-container">
+        <div class="assistant-avatar" id="assistantAvatar">
+            <img src="images/assistente.png" alt="Assistente Virtual" onerror="this.src='https://via.placeholder.com/90x90/4CAF50/ffffff?text=IA'">
+            <div class="assistant-icon">
+                <i class="fas fa-comment"></i>
+            </div>
+            <span class="notification-dot"></span>
+            <span class="assistant-label">Assistente Virtual</span>
+            <span class="assistant-tooltip">Clique para tirar dúvidas! 👋</span>
+        </div>
+
+        <div class="chat-box" id="chatBox">
+            <div class="chat-header">
+                <h3>🤖 Assistente DS - Senac Dourados</h3>
+                <button class="close-btn" id="closeChat">×</button>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    👋 Olá! Sou o assistente do curso de Desenvolvimento de Sistemas do Senac Dourados. Como posso ajudar?
+                </div>
+            </div>
+
+            <div class="quick-buttons">
+                <button class="quick-btn" data-message="Quero informações sobre o curso">
+                    📚 Sobre o curso
+                </button>
+                <button class="quick-btn" data-message="Projeto SAMU">
+                    🏥 Projeto SAMU
+                </button>
+                <button class="quick-btn" data-message="Quero me inscrever">
+                    📝 Inscrição
+                </button>
+                <button class="quick-btn" data-message="Contato">
+                    📞 Contato
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h4>Senac Dourados</h4>
+                    <p>Curso Técnico em Desenvolvimento de Sistemas</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Rua Dr. Mário Machado de Lemos, 240 - Jardim Londrina</p>
+                    <p><i class="fas fa-phone"></i> (67) 3411-2400</p>
+                    <p><i class="fas fa-whatsapp"></i> (67) 99949-2638</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="sobre.html">Sobre o Curso</a></li>
+                        <li><a href="eventos.html">Eventos</a></li>
+                        <li><a href="#projeto-samu">Projeto SAMU</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-redes">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Senac Dourados - Curso Técnico em Desenvolvimento de Sistemas. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="js/main.js"></script>
+    <script src="js/carrossel.js"></script>
+    <script src="js/assistente.js"></script>
 </body>
+
 </html>

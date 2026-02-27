@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos - Senac DS Dourados</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/assistente.css">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .eventos-hero {
+            background: linear-gradient(135deg, #1a3e2f 0%, #2a5a45 100%);
+            color: white;
+            padding: 120px 0 60px;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        .eventos-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .eventos-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .admin-access {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            z-index: 999;
+        }
+        
+        .admin-login-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            border: 2px solid white;
+            opacity: 0.7;
+        }
+        
+        .admin-login-btn:hover {
+            opacity: 1;
+            background: #45a049;
+            transform: scale(1.1);
+        }
+        /* Modal de Login */
+        
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        .modal-login {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: modalAppear 0.3s ease;
+        }
+        
+        @keyframes modalAppear {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .modal-login h2 {
+            color: #1a3e2f;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .modal-login h2 i {
+            color: #4CAF50;
+        }
+        
+        .modal-login p {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+        
+        .modal-input {
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-input label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        
+        .modal-input input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .modal-input input:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+        
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .btn-login {
+            flex: 1;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn-login:hover {
+            background: #45a049;
+        }
+        
+        .btn-cancelar {
+            flex: 1;
+            background: #f0f0f0;
+            color: #333;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn-cancelar:hover {
+            background: #e0e0e0;
+        }
+        
+        .login-error {
+            color: #f44336;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
+        }
+        
+        .login-error.show {
+            display: block;
+        }
+        /* Painel Admin */
+        
+        .admin-panel {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+            display: none;
+        }
+        
+        .admin-panel.active {
+            display: block;
+        }
+        
+        .admin-header {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .admin-header h2 {
+            color: #1a3e2f;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .admin-header h2 i {
+            color: #4CAF50;
+        }
+        
+        .admin-logout {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .admin-logout:hover {
+            background: #d32f2f;
+        }
+        
+        .form-container {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-container h3 {
+            color: #1a3e2f;
+            margin-bottom: 1.5rem;
+        }
+        
+        .evento-form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+        
+        .btn-salvar {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 1rem;
+        }
+        
+        .btn-salvar:hover {
+            background: #45a049;
+        }
+        
+        .eventos-list {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .eventos-list h3 {
+            color: #1a3e2f;
+            margin-bottom: 1.5rem;
+        }
+        
+        .eventos-list table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .eventos-list th {
+            text-align: left;
+            padding: 1rem;
+            background: #f5f5f5;
+            color: #1a3e2f;
+            font-weight: 600;
+        }
+        
+        .eventos-list td {
+            padding: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .eventos-list tr:hover {
+            background: #f9f9f9;
+        }
+        
+        .btn-deletar {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+        
+        .btn-deletar:hover {
+            background: #d32f2f;
+        }
+        
+        .eventos-empty {
+            padding: 4rem 0;
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .empty-content {
+            max-width: 500px;
+        }
+        
+        .empty-content i {
+            font-size: 5rem;
+            color: #4CAF50;
+            margin-bottom: 1.5rem;
+            opacity: 0.5;
+        }
+        
+        .empty-content h3 {
+            font-size: 1.8rem;
+            color: #1a3e2f;
+            margin-bottom: 1rem;
+        }
+        
+        .empty-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .evento-form {
+                grid-template-columns: 1fr;
+            }
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            .eventos-list {
+                overflow-x: auto;
+            }
+            .eventos-list table {
+                min-width: 600px;
+            }
+            .admin-login-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="images/senac-logo.png" alt="Senac Dourados" onerror="this.style.display='none'">
+                <span>Senac DS | Dourados</span>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="sobre.html">Sobre o Curso</a></li>
+                <li><a href="eventos.html" class="active">Eventos</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+
+    <section class="eventos-hero">
+        <div class="container">
+            <h1>Eventos do Curso</h1>
+            <p>Em breve você encontrará aqui todos os eventos, palestras e atividades do curso</p>
+        </div>
+    </section>
+
+
+    <section class="eventos-empty">
+        <div class="container">
+            <div class="empty-content">
+                <i class="fas fa-calendar-alt"></i>
+                <h3>Nenhum evento agendado</h3>
+                <p>Estamos preparando novidades incríveis! Em breve você encontrará aqui informações sobre palestras, workshops, hackathons e muito mais.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="admin-access">
+        <button class="admin-login-btn" onclick="abrirModalLogin()" title="Acesso Administrativo">
+            <i class="fas fa-key"></i>
+        </button>
+    </div>
+
+    <!-- MODAL DE LOGIN -->
+    <div class="modal-overlay" id="modalLogin">
+        <div class="modal-login">
+            <h2><i class="fas fa-lock"></i> Acesso Administrativo</h2>
+            <p>Digite suas credenciais para gerenciar eventos</p>
+
+            <div class="modal-input">
+                <label>Usuário</label>
+                <input type="text" id="usuario" placeholder="Digite seu usuário" value="admin">
+            </div>
+
+            <div class="modal-input">
+                <label>Senha</label>
+                <input type="password" id="senha" placeholder="Digite sua senha" value="admin">
+            </div>
+
+            <div class="login-error" id="loginError">
+                <i class="fas fa-exclamation-circle"></i> Usuário ou senha incorretos
+            </div>
+
+            <div class="modal-buttons">
+                <button class="btn-login" onclick="fazerLogin()">
+                    <i class="fas fa-sign-in-alt"></i> Entrar
+                </button>
+                <button class="btn-cancelar" onclick="fecharModalLogin()">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-header">
+            <h2><i class="fas fa-cog"></i> Gerenciar Eventos</h2>
+            <button class="admin-logout" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i> Sair
+            </button>
+        </div>
+
+        <!-- Formulário para adicionar evento -->
+        <div class="form-container">
+            <h3><i class="fas fa-plus-circle"></i> Adicionar Novo Evento</h3>
+
+            <form class="evento-form" id="eventoForm">
+                <div class="form-group">
+                    <label>Título do Evento *</label>
+                    <input type="text" id="titulo" placeholder="Ex: Maratona Desenvolvedor 2026" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Tipo *</label>
+                    <select id="tipo" required>
+                        <option value="">Selecione...</option>
+                        <option value="palestra">🎤 Palestra</option>
+                        <option value="workshop">🔧 Workshop</option>
+                        <option value="hackathon">💻 Hackathon</option>
+                        <option value="maratona">🚀 Maratona</option>
+                        <option value="projeto">🏥 Projeto</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Data *</label>
+                    <input type="date" id="data" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Horário *</label>
+                    <input type="text" id="horario" placeholder="Ex: 19h30 - 21h30" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Local *</label>
+                    <input type="text" id="local" placeholder="Ex: Auditório Senac" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Palestrante/Responsável</label>
+                    <input type="text" id="palestrante" placeholder="Ex: Prof. Thiago Gimenez">
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Descrição *</label>
+                    <textarea id="descricao" rows="4" placeholder="Descreva o evento..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Vagas</label>
+                    <input type="number" id="vagas" placeholder="Ex: 50">
+                </div>
+
+                <div class="form-group">
+                    <label>Status</label>
+                    <select id="status">
+                        <option value="aberto">✅ Inscrições Abertas</option>
+                        <option value="breve">⏳ Em breve</option>
+                        <option value="encerrado">❌ Encerrado</option>
+                    </select>
+                </div>
+
+                <div class="form-group full-width">
+                    <button type="submit" class="btn-salvar">
+                        <i class="fas fa-save"></i> Salvar Evento
+                    </button>
+                </div>
+            </form>
+        </div>
+
+
+        <div class="eventos-list">
+            <h3><i class="fas fa-list"></i> Eventos Cadastrados</h3>
+
+            <table id="tabelaEventos">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Título</th>
+                        <th>Tipo</th>
+                        <th>Local</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="listaEventos">
+
+                </tbody>
+            </table>
+
+            <p style="text-align: center; color: #999; margin-top: 2rem;" id="emptyListMessage">
+                Nenhum evento cadastrado. Adicione seu primeiro evento!
+            </p>
+        </div>
+    </div>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h4>Senac Dourados</h4>
+                    <p>Curso Técnico em Desenvolvimento de Sistemas</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Rua Dr. Mário Machado de Lemos, 240 - Jardim Londrina</p>
+                    <p><i class="fas fa-phone"></i> (67) 3411-2400</p>
+                    <p><i class="fas fa-whatsapp"></i> (67) 99949-2638</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="sobre.html">Sobre o Curso</a></li>
+                        <li><a href="eventos.html">Eventos</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-redes">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Senac Dourados - Curso Técnico em Desenvolvimento de Sistemas. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+
+    <script>
+        const ADMIN_USER = "admin";
+        const ADMIN_PASS = "admin";
+
+        // Array para armazenar eventos (simulando banco de dados)
+        let eventos = JSON.parse(localStorage.getItem('eventos')) || [];
+
+        // Abrir modal de login
+        function abrirModalLogin() {
+            document.getElementById('modalLogin').classList.add('active');
+            document.getElementById('usuario').value = 'admin';
+            document.getElementById('senha').value = 'admin';
+            document.getElementById('loginError').classList.remove('show');
+        }
+
+        // Fechar modal de login
+        function fecharModalLogin() {
+            document.getElementById('modalLogin').classList.remove('active');
+        }
+
+        // Fazer login
+        function fazerLogin() {
+            const usuario = document.getElementById('usuario').value;
+            const senha = document.getElementById('senha').value;
+
+            if (usuario === ADMIN_USER && senha === ADMIN_PASS) {
+                // Login bem-sucedido
+                document.getElementById('modalLogin').classList.remove('active');
+                document.getElementById('adminPanel').classList.add('active');
+                carregarEventos();
+            } else {
+                // Login falhou
+                document.getElementById('loginError').classList.add('show');
+            }
+        }
+
+        // Logout
+        function logout() {
+            document.getElementById('adminPanel').classList.remove('active');
+            eventos = JSON.parse(localStorage.getItem('eventos')) || [];
+        }
+
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('modalLogin');
+            if (event.target === modal) {
+                fecharModalLogin();
+            }
+        }
+
+        function carregarEventos() {
+            const tbody = document.getElementById('listaEventos');
+            const emptyMessage = document.getElementById('emptyListMessage');
+
+            if (eventos.length === 0) {
+                tbody.innerHTML = '';
+                emptyMessage.style.display = 'block';
+                return;
+            }
+
+            emptyMessage.style.display = 'none';
+
+            let html = '';
+            eventos.forEach((evento, index) => {
+                html += `
+                    <tr>
+                        <td>${formatarData(evento.data)}</td>
+                        <td><strong>${evento.titulo}</strong></td>
+                        <td>${evento.tipo}</td>
+                        <td>${evento.local}</td>
+                        <td>${formatarStatus(evento.status)}</td>
+                        <td>
+                            <button class="btn-deletar" onclick="deletarEvento(${index})">
+                                <i class="fas fa-trash"></i> Excluir
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            tbody.innerHTML = html;
+        }
+
+
+        function formatarData(dataString) {
+            const data = new Date(dataString + 'T12:00:00');
+            return data.toLocaleDateString('pt-BR');
+        }
+
+
+        function formatarStatus(status) {
+            switch (status) {
+                case 'aberto':
+                    return '<span style="color: #4CAF50;">✅ Inscrições Abertas</span>';
+                case 'breve':
+                    return '<span style="color: #FF9800;">⏳ Em breve</span>';
+                case 'encerrado':
+                    return '<span style="color: #f44336;">❌ Encerrado</span>';
+                default:
+                    return status;
+            }
+        }
+
+
+        document.getElementById('eventoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const novoEvento = {
+                titulo: document.getElementById('titulo').value,
+                tipo: document.getElementById('tipo').value,
+                data: document.getElementById('data').value,
+                horario: document.getElementById('horario').value,
+                local: document.getElementById('local').value,
+                palestrante: document.getElementById('palestrante').value,
+                descricao: document.getElementById('descricao').value,
+                vagas: document.getElementById('vagas').value,
+                status: document.getElementById('status').value
+            };
+
+            eventos.push(novoEvento);
+            localStorage.setItem('eventos', JSON.stringify(eventos));
+
+
+            this.reset();
+
+
+            carregarEventos();
+
+            alert('✅ Evento cadastrado com sucesso!');
+        });
+
+
+        function deletarEvento(index) {
+            if (confirm('Tem certeza que deseja excluir este evento?')) {
+                eventos.splice(index, 1);
+                localStorage.setItem('eventos', JSON.stringify(eventos));
+                carregarEventos();
+            }
+        }
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            carregarEventos();
+        });
+    </script>
+</body>
+
+</html>

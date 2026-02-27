@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Senac DS Dourados</title>
+
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/assistente.css">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .contato-hero {
+            background: linear-gradient(135deg, #1a3e2f 0%, #2a5a45 100%);
+            color: white;
+            padding: 120px 0 60px;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        .contato-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contato-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .contato-info {
+            padding: 5rem 0;
+        }
+        
+        .contato-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        
+        .contato-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+        
+        .contato-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.1);
+        }
+        
+        .contato-card h2 {
+            color: #1a3e2f;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contato-card h2 i {
+            color: #4CAF50;
+        }
+        
+        .contato-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            transition: background 0.3s;
+        }
+        
+        .contato-item:hover {
+            background: #e8f5e9;
+        }
+        
+        .contato-item i {
+            width: 40px;
+            height: 40px;
+            background: #4CAF50;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .contato-item-info h3 {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 0.2rem;
+        }
+        
+        .contato-item-info p {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #1a3e2f;
+        }
+        
+        .contato-item-info a {
+            color: #1a3e2f;
+            text-decoration: none;
+        }
+        
+        .contato-item-info a:hover {
+            color: #4CAF50;
+            text-decoration: underline;
+        }
+        
+        .mapa-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .formulario-contato {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .formulario-contato h2 {
+            color: #1a3e2f;
+            margin-bottom: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+        
+        .btn-enviar {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s, transform 0.3s;
+        }
+        
+        .btn-enviar:hover {
+            background: #45a049;
+            transform: scale(1.02);
+        }
+        
+        .redes-sociais-contato {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+        
+        .rede-social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+        
+        .rede-social-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .instagram {
+            background: #E1306C;
+        }
+        
+        .facebook {
+            background: #1877F2;
+        }
+        
+        .youtube {
+            background: #FF0000;
+        }
+        
+        .linkedin {
+            background: #0077B5;
+        }
+        
+        .faq-section {
+            padding: 5rem 0;
+            background: #f9f9f9;
+        }
+        
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .faq-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-item h3 {
+            color: #4CAF50;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .faq-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .contato-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .contato-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="images/senac-logo.png" alt="Senac Dourados" onerror="this.style.display='none'">
+                <span>Senac DS | Dourados</span>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="sobre.html">Sobre o Curso</a></li>
+                <li><a href="eventos.html">Eventos</a></li>
+                <li><a href="contato.html" class="active">Contato</a></li>
+            </ul>
+
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+
+    <section class="contato-hero">
+        <div class="container">
+            <h1>Fale Conosco</h1>
+            <p>Estamos aqui para tirar suas dúvidas e ajudar você a iniciar sua carreira em tecnologia</p>
+        </div>
+    </section>
+
+
+    <section class="contato-info">
+        <div class="container">
+            <div class="contato-grid">
+                <div>
+                    <!-- Canais de Atendimento -->
+                    <div class="contato-card">
+                        <h2><i class="fas fa-headset"></i> Canais de Atendimento</h2>
+
+                        <div class="contato-item">
+                            <i class="fab fa-whatsapp"></i>
+                            <div class="contato-item-info">
+                                <h3>WhatsApp</h3>
+                                <p><a href="https://wa.me/5567999492638" target="_blank">(67) 99949-2638</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contato-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <div class="contato-item-info">
+                                <h3>Telefone</h3>
+                                <p><a href="tel:556734112400">(67) 3411-2400</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contato-item">
+                            <i class="fas fa-envelope"></i>
+                            <div class="contato-item-info">
+                                <h3>E-mail</h3>
+                                <p><a href="mailto:atendimento@ms.senac.br">atendimento@ms.senac.br</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contato-item">
+                            <i class="fas fa-clock"></i>
+                            <div class="contato-item-info">
+                                <h3>Horário de Atendimento</h3>
+                                <p>Segunda a Sexta, 8h às 18h</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="contato-card">
+                        <h2><i class="fas fa-map-marker-alt"></i> Endereço</h2>
+
+                        <div class="contato-item">
+                            <i class="fas fa-location-dot"></i>
+                            <div class="contato-item-info">
+                                <h3>Senac Dourados</h3>
+                                <p>Rua Dr. Mário Machado de Lemos, 240 - Jardim Londrina - Dourados Ms<br>CEP: 79814-150</p>
+                            </div>
+                        </div>
+
+                        <div class="contato-item">
+                            <i class="fas fa-car"></i>
+                            <div class="contato-item-info">
+                                <h3>Como chegar</h3>
+                                <p>Próximo ào Forum Eleitoral</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="contato-card">
+                        <h2><i class="fas fa-user-tie"></i> Coordenação do Curso</h2>
+
+                        <div class="contato-item">
+                            <i class="fas fa-user"></i>
+                            <div class="contato-item-info">
+                                <h3>Coordenadora</h3>
+                                <p>Profa. Sibele </p>
+                            </div>
+                        </div>
+
+                        <div class="contato-item">
+                            <i class="fas fa-envelope"></i>
+                            <div class="contato-item-info">
+                                <h3>E-mail da Coordenação</h3>
+                                <p><a href="mailto:coord.ds@ms.senac.br">coord.ds@ms.senac.br</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contato-item">
+                            <i class="fas fa-clock"></i>
+                            <div class="contato-item-info">
+                                <h3>Horário de Atendimento</h3>
+                                <p>Seg, Qua e Sex - 14h às 17h</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div>
+
+                    <div class="mapa-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3735.123456789012!2d-54.805123456789!3d-22.221123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDEzJzE2LjAiUyA1NMKwNDgnMTguNCJX!5e0!3m2!1spt-BR!2sbr!4v1234567890123!5m2!1spt-BR!2sbr"
+                            width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+                        </iframe>
+                    </div>
+
+
+                    <div class="formulario-contato">
+                        <h2>Envie uma mensagem</h2>
+
+                        <form id="formContato">
+                            <div class="form-group">
+                                <label for="nome">Nome completo</label>
+                                <input type="text" id="nome" name="nome" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">E-mail</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="telefone">Telefone / WhatsApp</label>
+                                <input type="text" id="telefone" name="telefone">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="assunto">Assunto</label>
+                                <select id="assunto" name="assunto">
+                                    <option value="">Selecione...</option>
+                                    <option value="informacoes">Informações sobre o curso</option>
+                                    <option value="inscricao">Inscrição</option>
+                                    <option value="eventos">Eventos</option>
+                                    <option value="projeto">Projeto Integrador</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="mensagem">Mensagem</label>
+                                <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-enviar">
+                                <i class="fas fa-paper-plane"></i> Enviar mensagem
+                            </button>
+                        </form>
+
+                        <div class="redes-sociais-contato">
+                            <a href="#" class="rede-social-btn instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="rede-social-btn facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="rede-social-btn youtube"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="rede-social-btn linkedin"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Perguntas Frequentes</h2>
+
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3><i class="fas fa-question-circle"></i> Qual a duração do curso?</h3>
+                    <p>O curso tem duração de 18 meses (3 semestres), com aulas de segunda a sexta-feira.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3><i class="fas fa-question-circle"></i> Preciso ter computador?</h3>
+                    <p>Não é obrigatório. O Senac disponibiliza laboratórios com computadores para as aulas práticas.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3><i class="fas fa-question-circle"></i> Tem estágio garantido?</h3>
+                    <p>Sim! Temos parceria com mais de 30 empresas da região que oferecem estágio para nossos alunos.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3><i class="fas fa-question-circle"></i> Qual o investimento?</h3>
+                    <p>O valor é de R$ 497,00 mensais. Consulte sobre bolsas e financiamentos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h4>Senac Dourados</h4>
+                    <p>Curso Técnico em Desenvolvimento de Sistemas</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Rua Dr. Mário Machado de Lemos, 240 - Jardim Londrina - Dourados Ms</p>
+                    <p><i class="fas fa-phone"></i> (67) 3411-2400</p>
+                    <p><i class="fas fa-whatsapp"></i> (67) 99949-2638</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="sobre.html">Sobre o Curso</a></li>
+                        <li><a href="eventos.html">Eventos</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-redes">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Senac Dourados - Curso Técnico em Desenvolvimento de Sistemas. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.getElementById('formContato').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Mensagem enviada com sucesso! Em breve entraremos em contato.');
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>
